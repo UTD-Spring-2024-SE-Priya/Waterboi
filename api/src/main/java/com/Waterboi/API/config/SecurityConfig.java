@@ -1,5 +1,5 @@
-package com.waterboi.api.config;
-import com.waterboi.api.service.AppuserDetailsService;
+package com.Waterboi.API.config;
+import com.Waterboi.API.service.AppuserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,8 +19,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/", "/register*", "/login*", "/css/**", "/js/**", "/error")
+                        .requestMatchers("/", "/register*", "/login*", "/css/**", "/js/**", "/error","/fonts*","/api/**")
                         .permitAll()
                         .anyRequest().authenticated()
                 )

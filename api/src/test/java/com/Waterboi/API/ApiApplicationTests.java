@@ -1,4 +1,4 @@
-package com.waterboi.api;
+package com.Waterboi.API;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

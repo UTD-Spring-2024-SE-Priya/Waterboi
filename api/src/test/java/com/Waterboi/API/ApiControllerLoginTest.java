@@ -21,9 +21,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ApiControllerLoginTest {
     private static final String USERNAME_KEY = "username";
-    private static final String TEST_USERNAME = "newUser";
+    private static final String TEST_USERNAME = "newUser@gmail.com";
     private static final String PASSWORD_KEY = "password";
-    private static final String TEST_PASSWORD = "password";
+    private static final String TEST_PASSWORD = "password123";
     private static final String PASSWORD_CONFIRM_KEY = "passwordConfirm";
     private static final String LOGIN_URL = "/login";
     private static final String LOGIN_ERROR_URL = "/login?error";

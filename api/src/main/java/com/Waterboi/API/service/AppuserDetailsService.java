@@ -1,9 +1,9 @@
-package com.waterboi.api.service;
+package com.Waterboi.API.service;
 
-import com.waterboi.api.model.Appuser;
-import com.waterboi.api.repository.AppuserRepository;
+import com.Waterboi.API.entity.Appuser;
+import com.Waterboi.API.entity.AppuserDetails;
+import com.Waterboi.API.repository.AppuserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,16 +15,14 @@ public class AppuserDetailsService implements UserDetailsService {
     private AppuserRepository repository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Appuser appuser = repository.findByUsernameIgnoreCase(username);
-        User.UserBuilder builder = null;
-        if(appuser != null) {
-            builder = User.withUsername(username);
-            builder.password(appuser.getPassword());
-            builder.roles("USER");
-        } else {
-            throw new UsernameNotFoundException("User not found/");
-        }
-        return builder.build();
+        Appuser appuser = repository.findByUsernameIgnoreCase(username).orElseThrow(
+                () -> new UsernameNotFoundException("User not found")
+        );
+        return new AppuserDetails(appuser);
+//        User.UserBuilder builder = User.withUsername(username);
+//        builder.password(appuser.getPassword());
+//        builder.roles("USER");
+//        return builder.build();
     }
 
 }
